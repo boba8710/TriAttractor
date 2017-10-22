@@ -18,7 +18,7 @@ import javax.imageio.ImageIO;
  */
 public class Attractor {
 	public static void main(String[] args) {
-		int width = 1650, height = 1460;
+		int width = 10000, height = 10000;
 		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		int maxIterations = Integer.parseInt(args[0]); //Current runconfig: 1000
 		double p1x = 0;
