@@ -1,8 +1,6 @@
 /**
- * 
  * @author Zaine
  * @version 1.0.0
- * 
  */
 /*
  * An easy, breezy, quick, ugly Point data type.

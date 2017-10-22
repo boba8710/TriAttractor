@@ -1,28 +1,40 @@
 import java.lang.Math;
+import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
 /**
- * 
  * @author Zaine Wilson
- * @version 1.0.0
+ * @version 1.0.1
  */
 /* 
  * This is a pretty standard sierpinski gasket generator. It looks
  * like it's working by I have no way to verify until I get some
  * visualization on it.
+ * 
+ * Update 1: added rudimentary visualization. It's generating something, but it's
+ * not a sierpinski gasket?
  */
 public class Attractor {
 	public static void main(String[] args) {
+		int width = 1650, height = 1460;
+		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		int maxIterations = Integer.parseInt(args[0]); //Current runconfig: 1000
 		double p1x = 0;
 		double p1y = 0;
-		double p2x = 3;
+		double p2x = 1;
 		double p2y = 0;
-		double p3x = 1.5;
-		double p3y = 1.5;
+		double p3x = 0.5;
+		double p3y = 1;
 		double cx;
 		double cy;
-		cx = Math.random() * 3;
-		cy = Math.random() * 1.5; //initialize our random starting point
-		boolean[] pixelArray; //to be used for a rudimentary screen later maybe?
+		cx = Math.random();
+		cy = Math.random(); //initialize our random starting point
+		image.setRGB((int)(p1x*width), (int)(p1y*height), 100);
+		image.setRGB((int)(p2x*width)-1, (int)(p2y*height), 100);
+		image.setRGB((int)(p3x*width), (int)(p3y*height)-1, 100);
+		image.setRGB((int)(cx*width), (int)(cy*height), 255);
 		for(int iterations = 0; iterations <= maxIterations; iterations++){
 			int randNum = rollDice(6);
 			if(randNum == 1 || randNum == 2){
@@ -36,11 +48,13 @@ public class Attractor {
 				cx = 0.5*Math.abs(p3x-cx);
 				cy = 0.5*Math.abs(p3y-cy);
 			}
+			image.setRGB((int)(cx*width), (int)(cy*height), 255);
 			System.out.println("("+Double.toString(cx)+ ", "+Double.toString(cy)+")");
-			if(cx > 3 || cy > 1.5){
-				System.out.println("Caught an iteration breaking confinement :(");
-				break;
-			}
+		}
+		try {
+			ImageIO.write(image, "png", new File("C:\\users\\zaine\\desktop\\attractor.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		
 	}

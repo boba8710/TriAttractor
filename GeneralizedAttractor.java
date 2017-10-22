@@ -1,6 +1,5 @@
 import java.lang.Math;
 /**
- * 
  * @author Zaine
  * @version 1.0.0
  */
