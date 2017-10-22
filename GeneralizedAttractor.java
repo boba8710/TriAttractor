@@ -1,4 +1,9 @@
 import java.lang.Math;
+import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
 /**
  * @author Zaine
  * @version 1.0.0
@@ -10,6 +15,8 @@ import java.lang.Math;
  */
 public class GeneralizedAttractor {
 	public static void main(String[] args) {
+		int width = 10000, height = 10000;
+		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		int sides = Integer.parseInt(args[0]); // Currently set to 100. Sides dictates BOTH the number of points and the size of the operating plane
 		int iterations = Integer.parseInt(args[1]); //Currently set to 100.
 		double[] xPointsArray = new double[sides];

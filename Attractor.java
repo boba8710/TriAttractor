@@ -25,7 +25,7 @@ public class Attractor {
 		double p1y = 0;
 		double p2x = 1;
 		double p2y = 0;
-		double p3x = 0.5;
+		double p3x = 1;
 		double p3y = 1;
 		double cx;
 		double cy;
@@ -33,7 +33,7 @@ public class Attractor {
 		cy = Math.random(); //initialize our random starting point
 		image.setRGB((int)(p1x*width), (int)(p1y*height), 100);
 		image.setRGB((int)(p2x*width)-1, (int)(p2y*height), 100);
-		image.setRGB((int)(p3x*width), (int)(p3y*height)-1, 100);
+		image.setRGB((int)(p3x*width)-1, (int)(p3y*height)-1, 100);
 		image.setRGB((int)(cx*width), (int)(cy*height), 255);
 		for(int iterations = 0; iterations <= maxIterations; iterations++){
 			int randNum = rollDice(6);
