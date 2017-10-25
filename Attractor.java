@@ -9,12 +9,8 @@ import javax.imageio.ImageIO;
  * @version 1.0.1
  */
 /* 
- * This is a pretty standard sierpinski gasket generator. It looks
- * like it's working by I have no way to verify until I get some
- * visualization on it.
+ * This is a pretty standard sierpinski gasket generator.
  * 
- * Update 1: added rudimentary visualization. It's generating something, but it's
- * not a sierpinski gasket?
  */
 public class Attractor {
 	public static void main(String[] args) {
@@ -25,30 +21,30 @@ public class Attractor {
 		double p1y = 0;
 		double p2x = 1;
 		double p2y = 0;
-		double p3x = 1;
+		double p3x = 0.5;
 		double p3y = 1;
 		double cx;
 		double cy;
-		cx = Math.random();
-		cy = Math.random(); //initialize our random starting point
+		cx = 0.5;
+		cy = 0.5;
 		image.setRGB((int)(p1x*width), (int)(p1y*height), 100);
 		image.setRGB((int)(p2x*width)-1, (int)(p2y*height), 100);
-		image.setRGB((int)(p3x*width)-1, (int)(p3y*height)-1, 100);
+		image.setRGB((int)(p3x*width), (int)(p3y*height)-1, 100);
 		image.setRGB((int)(cx*width), (int)(cy*height), 255);
 		for(int iterations = 0; iterations <= maxIterations; iterations++){
 			int randNum = rollDice(6);
 			if(randNum == 1 || randNum == 2){
-				cx = 0.5*Math.abs(p1x-cx);
-				cy = 0.5*Math.abs(p1y-cy);
+				cx = cx+0.5*(p1x-cx);
+				cy = cy+0.5*(p1y-cy);
 			}
 			else if(randNum == 3 || randNum == 4){
-				cx = 0.5*Math.abs(p2x-cx);
-				cy = 0.5*Math.abs(p2y-cy);
+				cx = cx+0.5*(p2x-cx);
+				cy = cy+0.5*(p2y-cy);
 			}else{
-				cx = 0.5*Math.abs(p3x-cx);
-				cy = 0.5*Math.abs(p3y-cy);
+				cx = cx+0.5*(p3x-cx);
+				cy = cy+0.5*(p3y-cy);
 			}
-			image.setRGB((int)(cx*width), (int)(cy*height), 255);
+			image.setRGB((int)(cx*width), (int)(cy*height), 6553);
 			System.out.println("("+Double.toString(cx)+ ", "+Double.toString(cy)+")");
 		}
 		try {
